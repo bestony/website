@@ -15,7 +15,7 @@ Some platforms require additional steps, as detailed below.
 ### Android
 
 Android apps must [declare their use of the internet][declare] in the Android
-manifest (`AndroidManifest.xml `):
+manifest (`AndroidManifest.xml`):
 
 ```
 <manifest xlmns:android...>
@@ -28,7 +28,7 @@ manifest (`AndroidManifest.xml `):
 ## Samples
 
 For a practical sample of various networking tasks (incl. fetching data,
-WebSockets, and parsing data in the background) see the 
+WebSockets, and parsing data in the background) see the
 [networking cookbook](/docs/cookbook#networking).
 
 [declare]: {{site.android-dev}}/training/basics/network-ops/connecting

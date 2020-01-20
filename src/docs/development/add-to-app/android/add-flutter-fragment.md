@@ -16,22 +16,23 @@ single-`Activity` app. Flutter provides a `FlutterFragment` so that developers
 can present a Flutter experience any place that they can use a regular
 `Fragment`.
 
-[`Fragment`]: https://developer.android.com/guide/components/fragments
+[`fragment`]: https://developer.android.com/guide/components/fragments
 
 If an `Activity` is equally applicable for your application needs, consider
 [using a `FlutterActivity`] instead of a `FlutterFragment`, which is quicker and
 easier to use.
 
-[using a `FlutterActivity`]: /docs/development/add-to-app/android/add-flutter-screen
+[using a `flutteractivity`]:
+  /docs/development/add-to-app/android/add-flutter-screen
 
 `FlutterFragment` allows developers to control the following details of the
 Flutter experience within the `Fragment`:
 
- * Initial Flutter route.
- * Dart entrypoint to execute.
- * Opaque vs translucent background.
- * Whether `FlutterFragment` should control its surrounding `Activity`.
- * Whether a new `FlutterEngine` or a cached `FlutterEngine` should be used.
+- Initial Flutter route.
+- Dart entrypoint to execute.
+- Opaque vs translucent background.
+- Whether `FlutterFragment` should control its surrounding `Activity`.
+- Whether a new `FlutterEngine` or a cached `FlutterEngine` should be used.
 
 `FlutterFragment` also comes with a number of calls that must be forwarded from
 its surrounding `Activity`. These calls allow Flutter to react appropriately to
@@ -45,13 +46,14 @@ guide.
 The first thing to do to use a `FlutterFragment` is to add it to a host
 `Activity`.
 
-To add a `FlutterFragment` to a host `Activity`, instantiate and
-attach an instance of `FlutterFragment` in `onCreate()` within the
-`Activity`, or at another time that works for your app:
+To add a `FlutterFragment` to a host `Activity`, instantiate and attach an
+instance of `FlutterFragment` in `onCreate()` within the `Activity`, or at
+another time that works for your app:
 
-{% samplecode add-fragment %}
-{% sample Java %}
+{% samplecode add-fragment %} {% sample Java %}
+
 <?code-excerpt "MyActivity.java" title?>
+
 ```java
 public class MyActivity extends FragmentActivity {
     // Define a tag String to represent the FlutterFragment within this
@@ -96,8 +98,11 @@ public class MyActivity extends FragmentActivity {
     }
 }
 ```
+
 {% sample Kotlin %}
+
 <?code-excerpt "MyActivity.kt" title?>
+
 ```kotlin
 class MyActivity : FragmentActivity() {
   companion object {
@@ -143,17 +148,20 @@ class MyActivity : FragmentActivity() {
   }
 }
 ```
+
 {% endsamplecode %}
 
-The previous code is sufficient to render a Flutter UI that begins with a call to
-your `main()` Dart entrypoint, an initial Flutter route of `/`, and a new
+The previous code is sufficient to render a Flutter UI that begins with a call
+to your `main()` Dart entrypoint, an initial Flutter route of `/`, and a new
 `FlutterEngine`. However, this code is not sufficient to achieve all expected
-Flutter behavior. Flutter depends on various OS signals that must  be
-forwarded from your host `Activity` to `FlutterFragment`. These calls are shown in the following example:
+Flutter behavior. Flutter depends on various OS signals that must be forwarded
+from your host `Activity` to `FlutterFragment`. These calls are shown in the
+following example:
 
-{% samplecode forward-activity-calls %}
-{% sample Java %}
+{% samplecode forward-activity-calls %} {% sample Java %}
+
 <?code-excerpt "MyActivity.java" title?>
+
 ```java
 public class MyActivity extends FragmentActivity {
     @Override
@@ -197,8 +205,11 @@ public class MyActivity extends FragmentActivity {
     }
 }
 ```
+
 {% sample Kotlin %}
+
 <?code-excerpt "MyActivity.kt" title?>
+
 ```kotlin
 class MyActivity : FragmentActivity() {
   override fun onPostResume() {
@@ -236,6 +247,7 @@ class MyActivity : FragmentActivity() {
   }
 }
 ```
+
 {% endsamplecode %}
 
 With the OS signals forwarded to Flutter, your `FlutterFragment` works as
@@ -256,9 +268,10 @@ using an existing, pre-warmed instance of `FlutterEngine`.
 To use a pre-warmed `FlutterEngine` in a `FlutterFragment`, instantiate a
 `FlutterFragment` with the `withCachedEngine()` factory method.
 
-{% samplecode use-prewarmed-engine %}
-{% sample Java %}
+{% samplecode use-prewarmed-engine %} {% sample Java %}
+
 <?code-excerpt "MyApplication.java" title?>
+
 ```java
 // Somewhere in your app, before your FlutterFragment is needed, like in the
 // Application class ...
@@ -277,11 +290,15 @@ FlutterEngineCache
 ```
 
 <?code-excerpt "MyActivity.java" title?>
+
 ```java
 flutterFragment.withCachedEngine("my_engine_id").build();
 ```
+
 {% sample Kotlin %}
+
 <?code-excerpt "MyApplication.kt" title?>
+
 ```kotlin
 // Somewhere in your app, before your FlutterFragment is needed, like in the
 // Application class ...
@@ -300,34 +317,37 @@ FlutterEngineCache
 ```
 
 <?code-excerpt "MyActivity.kt" title?>
+
 ```kotlin
 flutterFragment.withCachedEngine("my_engine_id").build()
 ```
+
 {% endsamplecode %}
 
 `FlutterFragment` internally knows about `FlutterEngineCache` and retrieves the
 pre-warmed `FlutterEngine` based on the ID given to `withCachedEngine()`.
 
-By providing a pre-warmed `FlutterEngine`, as previously shown, your app renders the
-first Flutter frame as quickly as possible.
+By providing a pre-warmed `FlutterEngine`, as previously shown, your app renders
+the first Flutter frame as quickly as possible.
 
 #### Initial route with a cached engine
 
-The concept of an initial route is available when configuring a 
+The concept of an initial route is available when configuring a
 `FlutterActivity` or a `FlutterFragment` with a new `FlutterEngine`. However,
 `FlutterActivity` and `FlutterFragment` don't offer the concept of an initial
-route when using a cached engine. This is because a cached engine is expected
-to already be running Dart code, which means it's too late to configure the
-initial route.
+route when using a cached engine. This is because a cached engine is expected to
+already be running Dart code, which means it's too late to configure the initial
+route.
 
-Developers that would like their cached engine to begin with a custom
-initial route can configure their cached `FlutterEngine` to use a custom initial
-route just before executing the Dart entrypoint. The following example
-demonstrates the use of an initial route with a cached engine:
+Developers that would like their cached engine to begin with a custom initial
+route can configure their cached `FlutterEngine` to use a custom initial route
+just before executing the Dart entrypoint. The following example demonstrates
+the use of an initial route with a cached engine:
 
-{% samplecode cached-engine-with-initial-route %}
-{% sample Java %}
+{% samplecode cached-engine-with-initial-route %} {% sample Java %}
+
 <?code-excerpt "MyApplication.java" title?>
+
 ```java
 public class MyApplication extends Application {
   @Override
@@ -351,8 +371,11 @@ public class MyApplication extends Application {
   }
 }
 ```
+
 {% sample Kotlin %}
+
 <?code-excerpt "MyApplication.kt" title?>
+
 ```kotlin
 class MyApplication : Application() {
   lateinit var flutterEngine : FlutterEngine
@@ -378,6 +401,7 @@ class MyApplication : Application() {
   }
 }
 ```
+
 {% endsamplecode %}
 
 By setting the initial route of the navigation channel, the associated
@@ -385,20 +409,21 @@ By setting the initial route of the navigation channel, the associated
 `runApp()` Dart function.
 
 Changing the initial route property of the navigation channel after the initial
-execution of `runApp()` has no effect. Developers who would like to use
-the same `FlutterEngine` between different `Activity`s and `Fragment`s and
-switch the route between those displays need to setup a method channel and
-explicitly instruct their Dart code to change `Navigator` routes.
+execution of `runApp()` has no effect. Developers who would like to use the same
+`FlutterEngine` between different `Activity`s and `Fragment`s and switch the
+route between those displays need to setup a method channel and explicitly
+instruct their Dart code to change `Navigator` routes.
 
 ## Display a splash screen
 
 The initial display of Flutter content requires some wait time, even if a
 pre-warmed `FlutterEngine` is used. To help improve the user experience around
 this brief waiting period, Flutter supports the display of a splash screen until
-Flutter renders its first frame. For instructions about how to show a splash screen,
-see the [Android splash screen guide].
+Flutter renders its first frame. For instructions about how to show a splash
+screen, see the [Android splash screen guide].
 
-[Android splash screen guide]: /docs/development/ui/splash-screen/android-splash-screen
+[android splash screen guide]:
+  /docs/development/ui/splash-screen/android-splash-screen
 
 ## Run Flutter with a specified initial route
 
@@ -408,31 +433,34 @@ scenarios, it's common for each Flutter experience to begin with different
 initial routes (routes other than `/`). To facilitate this, `FlutterFragment`'s
 `Builder` allows you to specify a desired initial route, as shown:
 
-{% samplecode launch-with-initial-route %}
-{% sample Java %}
+{% samplecode launch-with-initial-route %} {% sample Java %}
+
 <?code-excerpt "MyActivity.java" title?>
+
 ```java
 // With a new FlutterEngine.
 FlutterFragment flutterFragment = FlutterFragment.withNewEngine()
     .initialRoute("myInitialRoute/")
     .build();
 ```
+
 {% sample Kotlin %}
+
 <?code-excerpt "MyActivity.kt" title?>
+
 ```kotlin
 // With a new FlutterEngine.
 val flutterFragment = FlutterFragment.withNewEngine()
     .initialRoute("myInitialRoute/")
     .build()
 ```
+
 {% endsamplecode %}
 
-{{site.alert.note}}
-  `FlutterFragment`'s initial route property has no effect when a pre-warmed
-  `FlutterEngine` is used because the pre-warmed `FlutterEngine` already
-  chose an initial route. The initial route can be chosen explicitly when
-  pre-warming a `FlutterEngine`.
-{{site.alert.end}}
+{{site.alert.note}} `FlutterFragment`'s initial route property has no effect
+when a pre-warmed `FlutterEngine` is used because the pre-warmed `FlutterEngine`
+already chose an initial route. The initial route can be chosen explicitly when
+pre-warming a `FlutterEngine`. {{site.alert.end}}
 
 ## Run Flutter from a specified entrypoint
 
@@ -444,33 +472,36 @@ Dart entrypoint: `main()`, but you can define other entrypoints.
 execute for the given Flutter experience. To specify an entrypoint, build
 `FlutterFragment`, as shown:
 
-{% samplecode launch-with-custom-entrypoint %}
-{% sample Java %}
+{% samplecode launch-with-custom-entrypoint %} {% sample Java %}
+
 <?code-excerpt "MyActivity.java" title?>
+
 ```java
 FlutterFragment flutterFragment = FlutterFragment.withNewEngine()
     .dartEntrypoint("mySpecialEntrypoint")
     .build();
 ```
+
 {% sample Kotlin %}
+
 <?code-excerpt "MyActivity.kt" title?>
+
 ```kotlin
 val flutterFragment = FlutterFragment.withNewEngine()
     .dartEntrypoint("mySpecialEntrypoint")
     .build()
 ```
+
 {% endsamplecode %}
 
 The `FlutterFragment` configuration results in the execution of a Dart
 entrypoint called `mySpecialEntrypoint()`. Notice that the parentheses `()` are
 not included in the `dartEntrypoint` `String` name.
 
-{{site.alert.note}}
-  `FlutterFragment`'s Dart entrypoint property has no effect when a pre-warmed
-  `FlutterEngine` is used because the pre-warmed `FlutterEngine` already
-  executed a Dart entrypoint. The Dart entrypoint can be chosen explicitly when
-  pre-warming a `FlutterEngine`.
-{{site.alert.end}}
+{{site.alert.note}} `FlutterFragment`'s Dart entrypoint property has no effect
+when a pre-warmed `FlutterEngine` is used because the pre-warmed `FlutterEngine`
+already executed a Dart entrypoint. The Dart entrypoint can be chosen explicitly
+when pre-warming a `FlutterEngine`. {{site.alert.end}}
 
 ## Control `FlutterFragment`'s render mode
 
@@ -482,13 +513,14 @@ can't be interleaved in the middle of an Android `View` hierarchy. A
 topmost `View` in the hierarchy. Additionally, on Android versions before
 Android N, `SurfaceView`s can't be animated becuase their layout and rendering
 aren't synchronized with the rest of the `View` hierarchy. If either of these
-use cases are requirements for your app, then you need to use `TextureView` instead
-of `SurfaceView`. Select a `TextureView` by building a `FlutterFragment` with a
-`texture` `RenderMode`:
+use cases are requirements for your app, then you need to use `TextureView`
+instead of `SurfaceView`. Select a `TextureView` by building a `FlutterFragment`
+with a `texture` `RenderMode`:
 
-{% samplecode launch-with-rendermode %}
-{% sample Java %}
+{% samplecode launch-with-rendermode %} {% sample Java %}
+
 <?code-excerpt "MyActivity.java" title?>
+
 ```java
 // With a new FlutterEngine.
 FlutterFragment flutterFragment = FlutterFragment.withNewEngine()
@@ -500,8 +532,11 @@ FlutterFragment flutterFragment = FlutterFragment.withCachedEngine("my_engine_id
     .renderMode(FlutterView.RenderMode.texture)
     .build();
 ```
+
 {% sample Kotlin %}
+
 <?code-excerpt "MyActivity.kt" title?>
+
 ```kotlin
 // With a new FlutterEngine.
 val flutterFragment = FlutterFragment.withNewEngine()
@@ -513,6 +548,7 @@ val flutterFragment = FlutterFragment.withCachedEngine("my_engine_id")
     .renderMode(FlutterView.RenderMode.texture)
     .build()
 ```
+
 {% endsamplecode %}
 
 Using the configuration shown, the resulting `FlutterFragment` renders its UI to
@@ -521,33 +557,32 @@ a `TextureView`.
 ## Display a `FlutterFragment` with transparency
 
 By default, `FlutterFragment` renders with an opaque background, using a
-`SurfaceView`. (See "Control `FlutterFragment`'s render
-mode.") That background is black for any pixels that aren't  painted by Flutter.
-Rendering with an opaque background is the preferred rendering mode for
-performance reasons. Flutter rendering with transparency on Android negatively
-affects performance. However, there are many designs that require transparent
-pixels in the Flutter experience that show through to the underlying Android UI.
-For this reason, Flutter supports translucency in a `FlutterFragment`.
+`SurfaceView`. (See "Control `FlutterFragment`'s render mode.") That background
+is black for any pixels that aren't painted by Flutter. Rendering with an opaque
+background is the preferred rendering mode for performance reasons. Flutter
+rendering with transparency on Android negatively affects performance. However,
+there are many designs that require transparent pixels in the Flutter experience
+that show through to the underlying Android UI. For this reason, Flutter
+supports translucency in a `FlutterFragment`.
 
-{{site.alert.note}}
-  Both `SurfaceView` and `TextureView` support transparency. However, when a
-  `SurfaceView` is instructed to render with transparency, it positions itself
-  at a higher z-index than all other Android `View`s, which means it appears
-  above all other `View`s. This is a limitation of `SurfaceView`. If it's acceptable to render your Flutter experience on top of all other content,
-  then `FlutterFragment`'s default `RenderMode` of `surface` is the `RenderMode`
-  that you should use. However, if you need to display Android `View`s both
-  above and below your Flutter experience, then you must specify a
-  `RenderMode` of `texture`. See "Control
-  `FlutterFragment`'s render mode" for information about controlling the
-  `RenderMode`.
-{{site.alert.end}}
+{{site.alert.note}} Both `SurfaceView` and `TextureView` support transparency.
+However, when a `SurfaceView` is instructed to render with transparency, it
+positions itself at a higher z-index than all other Android `View`s, which means
+it appears above all other `View`s. This is a limitation of `SurfaceView`. If
+it's acceptable to render your Flutter experience on top of all other content,
+then `FlutterFragment`'s default `RenderMode` of `surface` is the `RenderMode`
+that you should use. However, if you need to display Android `View`s both above
+and below your Flutter experience, then you must specify a `RenderMode` of
+`texture`. See "Control `FlutterFragment`'s render mode" for information about
+controlling the `RenderMode`. {{site.alert.end}}
 
 To enable transparency for a `FlutterFragment`, build it with the following
 configuration:
 
-{% samplecode launch-with-transparency %}
-{% sample Java %}
+{% samplecode launch-with-transparency %} {% sample Java %}
+
 <?code-excerpt "MyActivity.java" title?>
+
 ```java
 // Using a new FlutterEngine.
 FlutterFragment flutterFragment = FlutterFragment.withNewEngine()
@@ -559,8 +594,11 @@ FlutterFragment flutterFragment = FlutterFragment.withCachedEngine("my_engine_id
     .transparencyMode(FlutterView.TransparencyMode.transparent)
     .build();
 ```
+
 {% sample Kotlin %}
+
 <?code-excerpt "MyActivity.kt" title?>
+
 ```kotlin
 // Using a new FlutterEngine.
 val flutterFragment = FlutterFragment.withNewEngine()
@@ -572,6 +610,7 @@ val flutterFragment = FlutterFragment.withCachedEngine("my_engine_id")
     .transparencyMode(FlutterView.TransparencyMode.transparent)
     .build()
 ```
+
 {% endsamplecode %}
 
 ## The relationship beween `FlutterFragment` and its `Activity`
@@ -596,15 +635,16 @@ pieces within the same `Window`.
 
 `FlutterFragment` comes with a concept that helps differentiate between the case
 when a `FlutterFragment` should be able to control its host `Activity`, and the
-cases when a `FlutterFragment` should only affect its own behavior. To prevent
-a `FlutterFragment` from exposing its `Activity` to Flutter plugins, and to
+cases when a `FlutterFragment` should only affect its own behavior. To prevent a
+`FlutterFragment` from exposing its `Activity` to Flutter plugins, and to
 prevent Flutter from controlling the `Activity`'s system UI, use the
 `shouldAttachEngineToActivity()` method in `FlutterFragment`'s `Builder`, as
 shown: 9
 
-{% samplecode attach-to-activity %}
-{% sample Java %}
+{% samplecode attach-to-activity %} {% sample Java %}
+
 <?code-excerpt "MyActivity.java" title?>
+
 ```java
 // Using a new FlutterEngine.
 FlutterFragment flutterFragment = FlutterFragment.withNewEngine()
@@ -616,8 +656,11 @@ FlutterFragment flutterFragment = FlutterFragment.withCachedEngine("my_engine_id
     .shouldAttachEngineToActivity(false)
     .build();
 ```
+
 {% sample Kotlin %}
+
 <?code-excerpt "MyActivity.kt" title?>
+
 ```kotlin
 // Using a new FlutterEngine.
 val flutterFragment = FlutterFragment.withNewEngine()
@@ -629,6 +672,7 @@ val flutterFragment = FlutterFragment.withCachedEngine("my_engine_id")
     .shouldAttachEngineToActivity(false)
     .build()
 ```
+
 {% endsamplecode %}
 
 Passing `false` to the `shouldAttachEngineToActivity()` `Builder` method
@@ -636,7 +680,6 @@ prevents Flutter from interacting with the surrounding `Activity`. The default
 value is `true`, which allows Flutter and Flutter plugins to interact with the
 surrounding `Activity`.
 
-{{site.alert.note}}
-  Some plugins may expect or require an `Activity` reference. Ensure that none
-  of your plugins require an `Activity` before you disable access.
-{{site.alert.end}}
+{{site.alert.note}} Some plugins may expect or require an `Activity` reference.
+Ensure that none of your plugins require an `Activity` before you disable
+access. {{site.alert.end}}

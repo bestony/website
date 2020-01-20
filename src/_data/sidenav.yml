@@ -160,29 +160,29 @@
     - title: Add Flutter to existing app
       permalink: /docs/development/add-to-app
       children:
-      - title: Introduction
-        permalink: /docs/development/add-to-app
-        match-page-url-exactly: true
-      - title: Adding to an Android app
-        permalink: /docs/development/add-to-app/android
-        children:
-          - title: Project setup
-            permalink: /docs/development/add-to-app/android/project-setup
-          - title: Add a single Flutter screen
-            permalink: /docs/development/add-to-app/android/add-flutter-screen
-          - title: Add a Flutter Fragment
-            permalink: /docs/development/add-to-app/android/add-flutter-fragment
-      - title: Adding to an iOS app
-        permalink: /docs/development/add-to-app/ios
-        children:
-          - title: Project setup
-            permalink: /docs/development/add-to-app/ios/project-setup
-          - title: Add a single Flutter screen
-            permalink: /docs/development/add-to-app/ios/add-flutter-screen
-      - title: Running, debugging & hot reload
-        permalink: /docs/development/add-to-app/debugging
-      - title: Loading sequence and performance
-        permalink: /docs/development/add-to-app/performance
+        - title: Introduction
+          permalink: /docs/development/add-to-app
+          match-page-url-exactly: true
+        - title: Adding to an Android app
+          permalink: /docs/development/add-to-app/android
+          children:
+            - title: Project setup
+              permalink: /docs/development/add-to-app/android/project-setup
+            - title: Add a single Flutter screen
+              permalink: /docs/development/add-to-app/android/add-flutter-screen
+            - title: Add a Flutter Fragment
+              permalink: /docs/development/add-to-app/android/add-flutter-fragment
+        - title: Adding to an iOS app
+          permalink: /docs/development/add-to-app/ios
+          children:
+            - title: Project setup
+              permalink: /docs/development/add-to-app/ios/project-setup
+            - title: Add a single Flutter screen
+              permalink: /docs/development/add-to-app/ios/add-flutter-screen
+        - title: Running, debugging & hot reload
+          permalink: /docs/development/add-to-app/debugging
+        - title: Loading sequence and performance
+          permalink: /docs/development/add-to-app/performance
     - title: Tools & techniques
       permalink: /docs/development/tools
       children:
@@ -264,25 +264,25 @@
       permalink: /docs/perf
     - title: App size
       permalink: /docs/perf/app-size
-#    - title: Memory
-#      permalink: /docs/perf/memory
-#    - title: Power usage
-#      permalink: /docs/perf/power
+    #    - title: Memory
+    #      permalink: /docs/perf/memory
+    #    - title: Power usage
+    #      permalink: /docs/perf/power
     - title: Rendering performance
       permalink: /docs/perf/rendering
       children:
-      - title: Overview
-        permalink: /docs/perf/rendering
-        match-page-url-exactly: true
-      - title: Performance best practices
-        permalink: /docs/perf/rendering/best-practices
-      - title: Performance profiling
-        permalink: /docs/perf/rendering/ui-performance
+        - title: Overview
+          permalink: /docs/perf/rendering
+          match-page-url-exactly: true
+        - title: Performance best practices
+          permalink: /docs/perf/rendering/best-practices
+        - title: Performance profiling
+          permalink: /docs/perf/rendering/ui-performance
 
 - title: Deployment
   children:
     - title: Creating flavors for Flutter
-      permalink:  /docs/deployment/flavors
+      permalink: /docs/deployment/flavors
     - title: Build and release an Android app
       permalink: /docs/deployment/android
     - title: Build and release an iOS app
