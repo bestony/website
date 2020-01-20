@@ -1,7 +1,8 @@
 ---
 title: Adding a splash screen and launch screen to an Android app
 short-title: Add a splash screen
-description: Learn how to add a splash screen and launch screen to your Android app.
+description:
+  Learn how to add a splash screen and launch screen to your Android app.
 ---
 
 {% asset
@@ -10,15 +11,14 @@ class="mw-100" alt="Add Splash Screen Header" %}
 
 The beginning of a Flutter experience requires a brief wait while Dart
 initializes. Additionally, a full Flutter app requires standard Android app
-initialization time. Flutter supports the display of a launch screen
-while your Android app initializes, and also supports the display of a splash
-screen while your Flutter experience initializes. This guide teaches you how to
-use launch screens and splash screens in an Android app with Flutter.
+initialization time. Flutter supports the display of a launch screen while your
+Android app initializes, and also supports the display of a splash screen while
+your Flutter experience initializes. This guide teaches you how to use launch
+screens and splash screens in an Android app with Flutter.
 
-{{site.alert.note}}
-  Strategies are available to minimize wait time related to Flutter
-  initialization. Consider [pre-warming a FlutterEngine]() and
-  [re-using a FlutterEngine throughout your app]() to avoid most wait time.
+{{site.alert.note}} Strategies are available to minimize wait time related to
+Flutter initialization. Consider [pre-warming a FlutterEngine]() and
+[re-using a FlutterEngine throughout your app]() to avoid most wait time.
 {{site.alert.end}}
 
 ## Android launch screen
@@ -27,10 +27,12 @@ Every Android app requires initialization time while the operating system sets
 up the app's process. Android provides the concept of a [launch screen] to
 display a `Drawable` while the app is initializing.
 
-[launch screen]: {{site.android-dev}}/topic/performance/vitals/launch-time#themed
+[launch screen]:
+  {{site.android-dev}}/topic/performance/vitals/launch-time#themed
 
 Flutter provides support for displaying an Android launch screen before showing
-a `FlutterActivity`. The instructions to display an Android launch screen are discussed in the next sections.
+a `FlutterActivity`. The instructions to display an Android launch screen are
+discussed in the next sections.
 
 ### Define a launch theme
 
@@ -43,10 +45,8 @@ In `styles.xml`, define a theme whose `windowBackground` is set to the
 </style>
 ```
 
-{{site.alert.note}}
-  The default Flutter project template includes a definition of a launch theme
-  and a launch background.
-{{site.alert.end}}
+{{site.alert.note}} The default Flutter project template includes a definition
+of a launch theme and a launch background. {{site.alert.end}}
 
 ### Define a normal theme
 
@@ -67,7 +67,8 @@ of the Flutter UI.
 
 In `AndroidManifest.xml`, set the `theme` of `FlutterActivity` to the launch
 theme. Then, add a metadata element to the desired `FlutterActivity` to instruct
-Flutter to switch from the launch theme to the normal theme at the appropriate time.
+Flutter to switch from the launch theme to the normal theme at the appropriate
+time.
 
 ```xml
 <activity
@@ -98,8 +99,8 @@ experience by displaying an Android `View` as a splash screen while Flutter
 initializes.
 
 Flutter supports two options for a splash screen. The first option is to  
-display a `Drawable` of your choice, which fades out after the initialization
-is complete. The other option is to provide a custom `SplashScreen`, which is
+display a `Drawable` of your choice, which fades out after the initialization is
+complete. The other option is to provide a custom `SplashScreen`, which is
 capable of displaying any Android `View` content that you want.
 
 ### Showing a Drawable splash screen
@@ -120,14 +121,14 @@ the following metadata to the associated `FlutterActivity` in
     />
 ```
 
-To display a splash screen with the same visual as a launch screen,
-reference the same `@drawable/launch_background` in the
+To display a splash screen with the same visual as a launch screen, reference
+the same `@drawable/launch_background` in the
 `io.flutter.embedding.android.SplashScreenDrawable` `meta-data`.
 
 #### In a FlutterFragment
 
-To display a `Drawable` as a Flutter splash screen in a `FlutterFragment`,
-make `FlutterFragment` a subclass and override `provideSplashScreen()`.
+To display a `Drawable` as a Flutter splash screen in a `FlutterFragment`, make
+`FlutterFragment` a subclass and override `provideSplashScreen()`.
 
 ```java
 public class MyFlutterFragment extends FlutterFragment {
@@ -145,25 +146,26 @@ public class MyFlutterFragment extends FlutterFragment {
 
 ### Creating a custom SplashScreen
 
-Splash screens are a great branding opportunity. Because of that, many teams 
+Splash screens are a great branding opportunity. Because of that, many teams
 implement unique, highly customized splash experiences. To facilitate this,
-Flutter allows you to display an arbitrary Android `View` as a splash
-screen, and even allows you to control how that `View` transitions to
-Flutter after Flutter renders its first frame.
+Flutter allows you to display an arbitrary Android `View` as a splash screen,
+and even allows you to control how that `View` transitions to Flutter after
+Flutter renders its first frame.
 
 #### Implement a custom splash View
 
 First, define the custom `View` that should be displayed as the splash screen.
 
-This `View` could display anything, from a simple solid color to an animation. An example isn't provided because there are too many options.
+This `View` could display anything, from a simple solid color to an animation.
+An example isn't provided because there are too many options.
 
 #### Implement the SplashScreen interface
 
 With a custom `View` defined, implement the `SplashScreen` interface.
 
-This guide shows two approaches to a `SplashScreen` implementation. First, the following 
-is an example of a `SplashScreen` that has no visual state and no transition
-animation.
+This guide shows two approaches to a `SplashScreen` implementation. First, the
+following is an example of a `SplashScreen` that has no visual state and no
+transition animation.
 
 ```java
 public class SimpleSplashScreen implements SplashScreen {
