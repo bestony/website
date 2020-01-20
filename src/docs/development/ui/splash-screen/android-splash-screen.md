@@ -98,7 +98,7 @@ until Flutter renders its first frame. Flutter supports an improved user
 experience by displaying an Android `View` as a splash screen while Flutter
 initializes.
 
-Flutter supports two options for a splash screen. The first option is to  
+Flutter supports two options for a splash screen. The first option is to
 display a `Drawable` of your choice, which fades out after the initialization is
 complete. The other option is to provide a custom `SplashScreen`, which is
 capable of displaying any Android `View` content that you want.
