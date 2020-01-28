@@ -8,25 +8,24 @@ next:
   path: /docs/cookbook/networking/authenticated-requests
 ---
 
-Fetching data from the internet is necessary for most apps.
-Luckily, Dart and Flutter provide tools, such as the
-`http` package, for this type of work.
+Fetching data from the internet is necessary for most apps. Luckily, Dart and
+Flutter provide tools, such as the `http` package, for this type of work.
 
 This recipe uses the following steps:
 
-  1. Add the `http` package.
-  2. Make a network request using the `http` package.
-  3. Convert the response into a custom Dart object.
-  4. Fetch and display the data with Flutter.
+1. Add the `http` package.
+2. Make a network request using the `http` package.
+3. Convert the response into a custom Dart object.
+4. Fetch and display the data with Flutter.
 
 ## 1. Add the `http` package
 
-The [`http`][] package provides the
-simplest way to fetch data from the internet.
+The [`http`][] package provides the simplest way to fetch data from the
+internet.
 
-To install the `http` package, add it to the dependencies section
-of the `pubspec.yaml`. You can find the latest version of the
-[http package][] the pub.dev.
+To install the `http` package, add it to the dependencies section of the
+`pubspec.yaml`. You can find the latest version of the [http package][] the
+pub.dev.
 
 ```yaml
 dependencies:
@@ -36,16 +35,18 @@ dependencies:
 Import the http package.
 
 <!-- skip -->
+
 ```dart
 import 'package:http/http.dart' as http;
 ```
 
 ## 2. Make a network request
 
-In this example, fetch a sample post from the
-[JSONPlaceholder][] using the [http.get()][] method.
+In this example, fetch a sample post from the [JSONPlaceholder][] using the
+[http.get()][] method.
 
 <!-- skip -->
+
 ```dart
 Future<http.Response> fetchPost() {
   return http.get('https://jsonplaceholder.typicode.com/posts/1');
@@ -54,29 +55,28 @@ Future<http.Response> fetchPost() {
 
 The `http.get()` method returns a `Future` that contains a `Response`.
 
-* [`Future`][] is a core Dart class for working with
-  async operations. A Future object represents a potential
-  value or error that will be available at some time in the future.
-* The `http.Response` class contains the data received from a successful
-  http call.
+- [`Future`][] is a core Dart class for working with async operations. A Future
+  object represents a potential value or error that will be available at some
+  time in the future.
+- The `http.Response` class contains the data received from a successful http
+  call.
 
 ## 3. Convert the response into a custom Dart object
 
 While it's easy to make a network request, working with a raw
-`Future<http.Response>` isn't very convenient. To make your life easier,
-convert the `http.Response` into a Dart object.
+`Future<http.Response>` isn't very convenient. To make your life easier, convert
+the `http.Response` into a Dart object.
 
 ### Create a `Post` class
 
-First, create a `Post` class that contains the data from the
-network request. It includes a factory constructor that
-creates a `Post` from JSON.
+First, create a `Post` class that contains the data from the network request. It
+includes a factory constructor that creates a `Post` from JSON.
 
-Converting JSON by hand is only one option.
-For more information, see the full article on
-[JSON and serialization][].
+Converting JSON by hand is only one option. For more information, see the full
+article on [JSON and serialization][].
 
 <!-- skip -->
+
 ```dart
 class Post {
   final int userId;
@@ -99,16 +99,16 @@ class Post {
 
 ### Convert the `http.Response` to a `Post`
 
-Now, use the following steps to update the `fetchPost()`
-function to return a `Future<Post>`:
+Now, use the following steps to update the `fetchPost()` function to return a
+`Future<Post>`:
 
-  1. Convert the response body into a JSON `Map` with the `dart:convert`
-     package.
-  2. If the server returns an "OK" response with a status code of 200, convert
-     the JSON `Map` into a `Post` using the `fromJson()` factory method.
-  3. If the server returns an unexpected response, throw an error.
+1. Convert the response body into a JSON `Map` with the `dart:convert` package.
+2. If the server returns an "OK" response with a status code of 200, convert the
+   JSON `Map` into a `Post` using the `fromJson()` factory method.
+3. If the server returns an unexpected response, throw an error.
 
 <!-- skip -->
+
 ```dart
 Future<Post> fetchPost() async {
   final response =
@@ -124,20 +124,20 @@ Future<Post> fetchPost() async {
 }
 ```
 
-Hooray! Now you've got a function that fetches a post from the
-internet.
+Hooray! Now you've got a function that fetches a post from the internet.
 
 ## 4. Fetch the data
 
-Call the fetch method in either the
-[`initState()`][] or [`didChangeDependencies()`][]
-methods.
+Call the fetch method in either the [`initState()`][] or
+[`didChangeDependencies()`][] methods.
 
-The `initState()` method is called exactly once and then never again.
-If you want to have the option of reloading the API in response to an
-[`InheritedWidget`][] changing, put the call into the
-`didChangeDependencies()` method. See [`State`][] for more details.  
+The `initState()` method is called exactly once and then never again. If you
+want to have the option of reloading the API in response to an
+[`InheritedWidget`][] changing, put the call into the `didChangeDependencies()`
+method. See [`State`][] for more details.
+
 <!-- skip -->
+
 ```dart
 class _MyAppState extends State<MyApp> {
   Future<Post> post;
@@ -152,19 +152,20 @@ class _MyAppState extends State<MyApp> {
 This Future will be used in the next step.
 
 ## 5. Display the data
-To to display the data on screen, use the
-[`FutureBuilder`][] widget.
-The `FutureBuilder` widget comes with Flutter and
-makes it easy to work with async data sources.
+
+To display the data on screen, use the [`FutureBuilder`][] widget. The
+`FutureBuilder` widget comes with Flutter and makes it easy to work with async
+data sources.
 
 You must provide two parameters:
 
-  1. The `Future` you want to work with. In this case, the future returned from
-  the `fetchPost()` function.
-  2. A `builder` function that tells Flutter what to render, depending on the
-  state of the `Future`: loading, success, or error.
+1. The `Future` you want to work with. In this case, the future returned from
+   the `fetchPost()` function.
+2. A `builder` function that tells Flutter what to render, depending on the
+   state of the `Future`: loading, success, or error.
 
 <!-- skip -->
+
 ```dart
 FutureBuilder<Post>(
   future: post,
@@ -183,21 +184,20 @@ FutureBuilder<Post>(
 
 ## Why is fetchPost() called in initState()?
 
-Although it's convenient, it's not recommended to put an API call in a
-`build()` method.
+Although it's convenient, it's not recommended to put an API call in a `build()`
+method.
 
-Flutter calls the `build()` method every time it wants to change anything
-in the view, and this happens surprisingly often. If you leave the fetch
-call in your `build()` method, you'll flood the API with unnecessary calls
-and slow down your app.
+Flutter calls the `build()` method every time it wants to change anything in the
+view, and this happens surprisingly often. If you leave the fetch call in your
+`build()` method, you'll flood the API with unnecessary calls and slow down your
+app.
 
 ## Testing
 
-For information on how to test this functionality,
-see the following recipes:
+For information on how to test this functionality, see the following recipes:
 
-  * [Introduction to unit testing][]
-  * [Mock dependencies using Mockito][]
+- [Introduction to unit testing][]
+- [Mock dependencies using Mockito][]
 
 ## Complete example
 
@@ -289,18 +289,17 @@ Future<Post> post;
 }
 ```
 
-
-[`didChangeDependencies()`]: {{site.api}}/flutter/widgets/State/didChangeDependencies.html
-[`Future`]: {{site.api}}/flutter/dart-async/Future-class.html
-[`FutureBuilder`]: {{site.api}}/flutter/widgets/FutureBuilder-class.html
-[JSONPlaceholder]: https://jsonplaceholder.typicode.com/
+[`didchangedependencies()`]:
+  {{site.api}}/flutter/widgets/State/didChangeDependencies.html
+[`future`]: {{site.api}}/flutter/dart-async/Future-class.html
+[`futurebuilder`]: {{site.api}}/flutter/widgets/FutureBuilder-class.html
+[jsonplaceholder]: https://jsonplaceholder.typicode.com/
 [`http`]: {{site.pub-pkg}}/http
 [http.get()]: {{site.pub-api}}/http/latest/http/get.html
 [http package]: {{site.pub}}/packages/http#-installing-tab-
-[`InheritedWidget`]: {{site.api}}/flutter/widgets/InheritedWidget-class.html
-[Introduction to unit testing]: /docs/cookbook/testing/unit/introduction
-[`initState()`]: {{site.api}}/flutter/widgets/State/initState.html
-[Mock dependencies using Mockito]: /docs/cookbook/testing/unit/mocking
-[JSON and serialization]: /docs/development/data-and-backend/json
-[`State`]: {{site.api}}/flutter/widgets/State-class.html
-
+[`inheritedwidget`]: {{site.api}}/flutter/widgets/InheritedWidget-class.html
+[introduction to unit testing]: /docs/cookbook/testing/unit/introduction
+[`initstate()`]: {{site.api}}/flutter/widgets/State/initState.html
+[mock dependencies using mockito]: /docs/cookbook/testing/unit/mocking
+[json and serialization]: /docs/development/data-and-backend/json
+[`state`]: {{site.api}}/flutter/widgets/State-class.html
