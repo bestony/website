@@ -34,7 +34,7 @@ file under your `application` tag:
 
 The reference to `@style/LaunchTheme` can be replaced by any Android theme that
 want to apply to your `FlutterActivity`. The choice of theme dictates the colors
-applied to Android's system chrome, like Android's navigation bar, and to  
+applied to Android's system chrome, like Android's navigation bar, and to
 the background color of the `FlutterActivity` just before the Flutter UI renders
 itself for the first time.
 
