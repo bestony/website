@@ -3,25 +3,23 @@ title: Technical videos
 description: Available videos on various aspects of developing in Flutter.
 ---
 
-These Flutter videos, produced both internally at Google and by the
-Flutter community, might help if you are a visual learner.
+These Flutter videos, produced both internally at Google and by the Flutter
+community, might help if you are a visual learner.
 
-Note that many people make Flutter videos.
-This page shows some that we like,
+Note that many people make Flutter videos. This page shows some that we like,
 but there are many others.
 
 ---
 
 ## Series
 
-The following list of series features the introduction to the series,
-with a link to the complete playlist.
+The following list of series features the introduction to the series, with a
+link to the complete playlist.
 
 ### Flutter Interact 2019
 
-Flutter Interact was a day-long event that showcased
-the latest from Flutter, and focused on creating beautiful
-experiences across devices.
+Flutter Interact was a day-long event that showcased the latest from Flutter,
+and focused on creating beautiful experiences across devices.
 
 Check out the Flutter Interact 2019 Highlights Reel:
 
@@ -52,8 +50,8 @@ Introducing Widget of the Week<br>
 
 ### The Boring Flutter Show
 
-This series features Flutter programmers live coding in real time.
-Coding mistakes, solutions, and snazzy intro music included.
+This series features Flutter programmers live coding in real time. Coding
+mistakes, solutions, and snazzy intro music included.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vqPG1tU6-c0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 Introducing the Boring Flutter Show<br>
@@ -83,9 +81,9 @@ Here are a some recent Flutter talks given at various conferences.
 
 ## Flutter Developer Stories
 
-Videos showing how various customers, such as Abbey Road Studio, Hamilton,
-and Alibaba, have used Flutter to create beautiful compelling apps with
-millions of downloads.
+Videos showing how various customers, such as Abbey Road Studio, Hamilton, and
+Alibaba, have used Flutter to create beautiful compelling apps with millions of
+downloads.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_ACWeGGBP4E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 [Flutter Developer Stories playlist][]
@@ -96,19 +94,27 @@ millions of downloads.
 
 Learn how to build Flutter apps with these video courses:
 
-* [The Complete Flutter Development Bootcamp Using Dart][] by App Brewery
-* [Flutter Crash Course][] by Nick Manning
+- [The Complete Flutter Development Bootcamp Using Dart][] by App Brewery
+- [Flutter Crash Course][] by Nick Manning
 
-
-
-[The Boring Flutter Show playlist]: https://www.youtube.com/playlist?list=PLjxrf2q8roU3ahJVrSgAnPjzkpGmL9Czl
-[The Complete Flutter Development Bootcamp Using Dart]: https://www.appbrewery.co/p/flutter-development-bootcamp-with-dart/
-[Flutter Crash Course]: https://fluttercrashcourse.com/
-[Conference Talks playlist]: https://www.youtube.com/playlist?list=PLjxrf2q8roU1UJ0OEpANodVMVm1GeE7Ti
-[Flutter Widget of the Week playlist]: https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG
-[Flutter Weekly Widgets playlist]: https://www.youtube.com/playlist?list=PLR2qQy0Zxs_Wot7YfLeeKdMlJ9838C_w0
-[Flutter in Focus playlist]: https://www.youtube.com/playlist?list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2
-[Flutter Interact 2019 playlist]: https://www.youtube.com/playlist?list=PLjxrf2q8roU0o0wKRJTjyN0pSUA6TI8lg
-[Flutter Live '18 playlist]: https://www.youtube.com/playlist?list=PLjxrf2q8roU38by1vmaw_BHHsy7emEXl-
-[Flutter Developer Stories playlist]: https://www.youtube.com/playlist?list=PLjxrf2q8roU33POuWi4bK0zvDpAHK6759
-[Flutter and Dart at Google I/O 2019 playlist]: https://www.youtube.com/playlist?list=PLjxrf2q8roU2no7yROrcQSVtwbYyxAGZV
+[the boring flutter show playlist]:
+  https://www.youtube.com/playlist?list=PLjxrf2q8roU3ahJVrSgAnPjzkpGmL9Czl
+[the complete flutter development bootcamp using dart]:
+  https://www.appbrewery.co/p/flutter-development-bootcamp-with-dart/
+[flutter crash course]: https://fluttercrashcourse.com/
+[conference talks playlist]:
+  https://www.youtube.com/playlist?list=PLjxrf2q8roU1UJ0OEpANodVMVm1GeE7Ti
+[flutter widget of the week playlist]:
+  https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG
+[flutter weekly widgets playlist]:
+  https://www.youtube.com/playlist?list=PLR2qQy0Zxs_Wot7YfLeeKdMlJ9838C_w0
+[flutter in focus playlist]:
+  https://www.youtube.com/playlist?list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2
+[flutter interact 2019 playlist]:
+  https://www.youtube.com/playlist?list=PLjxrf2q8roU0o0wKRJTjyN0pSUA6TI8lg
+[flutter live '18 playlist]:
+  https://www.youtube.com/playlist?list=PLjxrf2q8roU38by1vmaw_BHHsy7emEXl-
+[flutter developer stories playlist]:
+  https://www.youtube.com/playlist?list=PLjxrf2q8roU33POuWi4bK0zvDpAHK6759
+[flutter and dart at google i/o 2019 playlist]:
+  https://www.youtube.com/playlist?list=PLjxrf2q8roU2no7yROrcQSVtwbYyxAGZV

@@ -5,16 +5,16 @@ description: OverlayEntries will only rebuild on explicit state changes.
 
 ## Summary
 
-This  optimization improves performance for route transitions, but it may
-uncover missing calls to `setState` in your app.
+This optimization improves performance for route transitions, but it may uncover
+missing calls to `setState` in your app.
 
 ## Context
 
-Prior to this change an `OverlayEntry` would rebuild when a new opaque entry
-was added on top of it or removed above it. These rebuilds were unnecessary
-because they were not triggered by a change in state of the affected
-`OverlayEntry`. This change optimizes how we handle the addition and removal of
-`OverlayEntry`s and removes the unnecessary rebuilds to improve performance.
+Prior to this change an `OverlayEntry` would rebuild when a new opaque entry was
+added on top of it or removed above it. These rebuilds were unnecessary because
+they were not triggered by a change in state of the affected `OverlayEntry`.
+This change optimizes how we handle the addition and removal of `OverlayEntry`s
+and removes the unnecessary rebuilds to improve performance.
 
 Since the Navigator internally puts each `Route` into an `OverlayEntry` this
 change also applies to `Route` transitions: If an opaque `Route` is pushed on
@@ -28,9 +28,9 @@ However, if your app was erroneously relying on the implicit rebuilds you may
 see issues, which can be resolved by wrapping any state change in a `setState`
 call.
 
-Furthermore, the change slightly modifies the shape of the widget tree: Prior
-to this change, the `OverlayEntry`s were wrapped in a `Stack` widget. The
-explicit `Stack` widget has been removed from the widget hierarchy.
+Furthermore, the change slightly modifies the shape of the widget tree: Prior to
+this change, the `OverlayEntry`s were wrapped in a `Stack` widget. The explicit
+`Stack` widget has been removed from the widget hierarchy.
 
 ## Migration guide
 
@@ -43,6 +43,7 @@ implicitly modifying the state and it should be wrapped in an explicit
 Code before migration:
 
 <!-- skip -->
+
 ```dart
 class FooState extends State<Foo> {
   String buttonLabel = 'Click Me';
@@ -62,6 +63,7 @@ class FooState extends State<Foo> {
 Code after migration:
 
 <!-- skip -->
+
 ```dart
 class FooState extends State<Foo> {
   String buttonLabel = 'Click Me';
@@ -87,26 +89,31 @@ This change was made in January of 2020 after the v1.14.3 release.
 ## References
 
 API documentation:
-* [`setState`]
-* [`OverlayEntry`]
-* [`Overlay`]
-* [`Navigator`]
-* [`Route`]
-* [`OverlayRoute`]
+
+- [`setState`]
+- [`OverlayEntry`]
+- [`Overlay`]
+- [`Navigator`]
+- [`Route`]
+- [`OverlayRoute`]
 
 Relevant issues:
-* [Issue 45797]
+
+- [Issue 45797]
 
 Relevant PRs:
-* [Do not rebuild Routes when a new opaque Route is pushed on top]
-* [Reland "Do not rebuild Routes when a new opaque Route is pushed on top"]
 
-[`OverlayEntry`]: {{site.api}}/flutter/widgets/OverlayEntry-class.html
-[`Overlay`]: {{site.api}}/flutter/widgets/Overlay-class.html
-[`Navigator`]: {{site.api}}/flutter/widgets/Navigator-class.html
-[`Route`]: {{site.api}}/flutter/widgets/Route-class.html
-[`OverlayRoute`]: {{site.api}}/flutter/widgets/OverlayRoute-class.html
-[`setState`]: {{site.api}}/flutter/widgets/State/setState.html
-[Issue 45797]: {{site.github}}/flutter/flutter/issues/45797
-[Do not rebuild Routes when a new opaque Route is pushed on top]: {{site.github}}/flutter/flutter/pull/48900
-[Reland "Do not rebuild Routes when a new opaque Route is pushed on top"]: {{site.github}}/flutter/flutter/pull/49376
+- [Do not rebuild Routes when a new opaque Route is pushed on top]
+- [Reland "Do not rebuild Routes when a new opaque Route is pushed on top"]
+
+[`overlayentry`]: {{site.api}}/flutter/widgets/OverlayEntry-class.html
+[`overlay`]: {{site.api}}/flutter/widgets/Overlay-class.html
+[`navigator`]: {{site.api}}/flutter/widgets/Navigator-class.html
+[`route`]: {{site.api}}/flutter/widgets/Route-class.html
+[`overlayroute`]: {{site.api}}/flutter/widgets/OverlayRoute-class.html
+[`setstate`]: {{site.api}}/flutter/widgets/State/setState.html
+[issue 45797]: {{site.github}}/flutter/flutter/issues/45797
+[do not rebuild routes when a new opaque route is pushed on top]:
+  {{site.github}}/flutter/flutter/pull/48900
+[reland "do not rebuild routes when a new opaque route is pushed on top"]:
+  {{site.github}}/flutter/flutter/pull/49376
